@@ -1,0 +1,18 @@
+<h1>Tempreture Calculater</h1>
+
+
+<div class="main-wrapper" >
+
+  <p>Fahrenheit</p>
+  <input type="number" placeholder="Fahrenheit" class="form-control" [(ngModel)]="temperatureFahrenheit" (input)="onSearchChange($event.target.value , 'Fahrenheit')">
+
+  <p>Celsius</p>
+  <input type="number" placeholder="Celsius" class="form-control" [(ngModel)]="temperatureCelsius" (input)="onSearchChange($event.target.value, 'Celsius')">
+
+  <p>Kelvin</p>
+  <input type="number" placeholder="Kelvin" class="form-control" [(ngModel)]="temperatureKelvin" (input)="onSearchChange($event.target.value, 'Kelvin')">
+
+</div>
+
+
+
