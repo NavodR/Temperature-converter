@@ -20,14 +20,10 @@ export class TempretureDataComponent {
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
    
-  onSearchChange(searchValue: number, type: string ): void {
+  onTempChange(searchValue: number, type: string ): void {
     console.log(searchValue);
     let params = new HttpParams().set('temperature', JSON.stringify(searchValue.toString()))
       .set('type', type);
-
-    console.log()
-   
-    
     //This Server call must bring in to service
     this.http.get<TempretureSet[]>(this.baseUrl + 'api/Tempreture/TempretureCalculater', {params}).subscribe(result => {
       this.tempretureSet = result;

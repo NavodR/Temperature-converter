@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using TemperaturesConverter.ViewModels;
 
 namespace TemperaturesConverter.Controllers
 {
@@ -14,39 +15,33 @@ namespace TemperaturesConverter.Controllers
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
+        //This can be implemented in more generic way
         [HttpGet("[action]")]
-        public void TempretureCalculater(string temperature, string type)
+        public TemperatureViewModel TempretureCalculater(string temperature, string type)
         {
-            //if (type == ')
-            //{
-            //    cel = int.Parse(txtCelsious.Text);
-            //    fr = (cel * 9) / 5 + 32;
-
-            //    txtFahrenheit.Text = fr.ToString();
-            //}
-
-            //var rng = new Random();
-            //return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            //{
-            //    DateFormatted = DateTime.Now.AddDays(index).ToString("d"),
-            //    TemperatureC = rng.Next(-20, 55),
-            //    Summary = Summaries[rng.Next(Summaries.Length)]
-            //});
-        }
-
-        public class WeatherForecast
-        {
-            public string DateFormatted { get; set; }
-            public int TemperatureC { get; set; }
-            public string Summary { get; set; }
-
-            public int TemperatureF
+            TemperatureViewModel temprarureViewModel = new TemperatureViewModel();
+            if (type == "Fahrenheit")
             {
-                get
-                {
-                    return 32 + (int)(TemperatureC / 0.5556);
-                }
+                int TempValue = int.Parse(temperature);
+                temprarureViewModel.TemperatureCelsius = Convert.ToInt32(TempValue - 32) * 5 / 9;
+                temprarureViewModel.TemperatureKelvin = Convert.ToInt32(((TempValue - 32) / 1.8) + 273.15);
+
             }
+            else if(){
+
+            }
+            {
+                cel = int.Parse(txtCelsious.Text);
+                fr = (cel * 9) / 5 + 32;
+
+                txtFahrenheit.Text = fr.ToString();
+            }
+
+          
+       
+            return temprarureViewModel;
         }
+
+       
     }
 }
