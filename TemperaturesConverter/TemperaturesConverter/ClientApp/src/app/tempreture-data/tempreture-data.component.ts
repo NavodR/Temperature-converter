@@ -10,26 +10,27 @@ import { TempretureSet } from '../interfaces/tempretureset';
 })
 
 export class TempretureDataComponent {
-  public tempretureSet: TempretureSet[];
 
- // tempretureSet: TempretureSet[];
+  public tempretureSet: TempretureSet[];
   temperatureKelvin = 0;
   temperatureFahrenheit = 0;
   temperatureCelsius = 0;
 
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
-   
+
+  
   onTempChange(searchValue: number, type: string ): void {
-    console.log(searchValue);
-    let params = new HttpParams().set('temperature', JSON.stringify(searchValue.toString()))
+   
+    let params = new HttpParams().set('temperature', searchValue.toString())
       .set('type', type);
+
     //This Server call must bring in to service
     this.http.get<TempretureSet[]>(this.baseUrl + 'api/Tempreture/TempretureCalculater', {params}).subscribe(result => {
       this.tempretureSet = result;
     }, error => console.error(error));
 
-    this.getTempratureData(params);
+    //this.getTempratureData(params);
 
 
 

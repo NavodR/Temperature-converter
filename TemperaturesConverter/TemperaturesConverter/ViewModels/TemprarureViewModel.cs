@@ -12,9 +12,9 @@ namespace TemperaturesConverter.ViewModels
 
             public int TemperatureFahrenheit { get; set; }
 
-            public id TemperatureCelsius { get; set; }
+            public int TemperatureCelsius { get; set; }
 
-           }
-        }
+           
+        
     }
 }

@@ -10,33 +10,35 @@ namespace TemperaturesConverter.Controllers
     [Route("api/[controller]")]
     public class TempretureController : Controller
     {
-        private static string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
+      
         //This can be implemented in more generic way
         [HttpGet("[action]")]
         public TemperatureViewModel TempretureCalculater(string temperature, string type)
         {
             TemperatureViewModel temprarureViewModel = new TemperatureViewModel();
-            if (type == "Fahrenheit")
-            {
+            if (temperature != null) {
                 int TempValue = int.Parse(temperature);
-                temprarureViewModel.TemperatureCelsius = Convert.ToInt32(TempValue - 32) * 5 / 9;
-                temprarureViewModel.TemperatureKelvin = Convert.ToInt32(((TempValue - 32) / 1.8) + 273.15);
+                if (type == "Fahrenheit")
+                {
+                    temprarureViewModel.TemperatureFahrenheit = Convert.ToInt32(TempValue);
+                    temprarureViewModel.TemperatureCelsius = Convert.ToInt32(TempValue - 32) * 5 / 9;
+                    temprarureViewModel.TemperatureKelvin = Convert.ToInt32(((TempValue - 32) / 1.8) + 273.15);
+
+                }
+                else if (type == "Celsius")
+                {
+                    temprarureViewModel.TemperatureCelsius = Convert.ToInt32(TempValue);
+                    temprarureViewModel.TemperatureFahrenheit = Convert.ToInt32(TempValue * 1.8) + 32;
+                    temprarureViewModel.TemperatureKelvin = Convert.ToInt32(TempValue + 273.15);
+                }
+                else
+                {
+                    temprarureViewModel.TemperatureKelvin = Convert.ToInt32(TempValue);
+                    temprarureViewModel.TemperatureFahrenheit = Convert.ToInt32((TempValue - 273.15) * 1.8) + 32;
+                    temprarureViewModel.TemperatureCelsius = Convert.ToInt32(TempValue - 273.15);
+                }
 
             }
-            else if(){
-
-            }
-            {
-                cel = int.Parse(txtCelsious.Text);
-                fr = (cel * 9) / 5 + 32;
-
-                txtFahrenheit.Text = fr.ToString();
-            }
-
           
        
             return temprarureViewModel;
