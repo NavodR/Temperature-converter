@@ -32,11 +32,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\Interfaces\TempData.ts" />
     <None Remove="ClientApp\src\app\Interfaces\TempretureSet.ts" />
+    <None Remove="ClientApp\src\app\services\TempService.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\Interfaces\TempData.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Interfaces\TempretureSet.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\TempService.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

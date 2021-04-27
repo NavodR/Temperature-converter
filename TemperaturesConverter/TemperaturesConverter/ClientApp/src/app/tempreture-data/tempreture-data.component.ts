@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient,  HttpParams } from '@angular/common/http';
 import { TempretureSet } from '../interfaces/tempretureset';
+import { TempData } from '../interfaces/tempData';
+import { TempService } from '../services/tempService';
 
 @Component({
   selector: 'app-tempreture-data',
@@ -13,70 +15,28 @@ export class TempretureDataComponent {
   public tempretureSet: TempretureSet[] = [];
  
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string,
+    private tempService: TempService) { }
 
-  
+  public iTemp = <TempData>{}
+
   onTempChange(searchValue: number, type: string ): void {
    
-    let params = new HttpParams().set('temperature', searchValue.toString())
-      .set('type', type);
+    this.iTemp.temperature = searchValue.toString();
+    this.iTemp.type = type;
+    this.iTemp.url = this.baseUrl + 'api/Tempreture/TempretureCalculater';
 
-    //This Server call must bring in to service
-    this.http.get<TempretureSet[]>(this.baseUrl + 'api/Tempreture/TempretureCalculater', {params}).subscribe(result => {
-      this.tempretureSet = result;
-      console.log(this.tempretureSet);
-    }, error => console.error(error));
-
-    //this.getTempratureData(params);
-
-
-
-    //this.heroService.getHeroes(hero?:  TempretureSet)
-    //  .subscribe(heroes => this.heroes = heroes);
-
-
+    //Call Temp Service
+    this.tempService.getData(this.iTemp)
+      .subscribe((result) => {
+        this.tempretureSet = result as TempretureSet[];
+      },
+      (error) => {
+        console.error(error);
+      });
 
   }
-
-
-
-
-
-
-  //ngOnInit() {
-  //  this.getTempratureData(this.params);
-  //}
-
-
-
-  getTempratureData(params): void {
-    this.http.get<TempretureSet[]>(this.baseUrl + 'api/Tempreture/TempretureCalculater', {params}).subscribe(result => {
-      this.tempretureSet = result;
-    }, error => console.error(error));
-  }
-
-  //constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-  //  http.get<TempretureSet[]>(baseUrl + 'api/Tempreture/TempretureCalculater', {}).subscribe(result => {
-  //    this.tempretureSet = result;
-  //  }, error => console.error(error));
-  //}
-
-  //getHeroes(): void {
-  //  this.heroService.getHeroes()
-  //    .subscribe(heroes => this.heroes = heroes);
-  //}
-
-
-
-
-  //constructor(private _httpService: HttpClient) { }
-  //accessPointUrl: string = 'https://localhost:44356/api/SampleData';
-
-  //ngOnInit() {
-  //  this._httpService.get(this.accessPointUrl).subscribe(values => {
-  //    this.tempretureSet = values;
-  //  });
-  //}
+  
 }
 
 

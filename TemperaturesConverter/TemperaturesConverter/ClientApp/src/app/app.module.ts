@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { TempretureDataComponent } from './tempreture-data/tempreture-data.component';
+import { TempService } from './services/tempService';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,7 @@ import { TempretureDataComponent } from './tempreture-data/tempreture-data.compo
       { path: 'tempreture-data', component: TempretureDataComponent },
     ])
   ],
-  providers: [],
+  providers: [TempService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
