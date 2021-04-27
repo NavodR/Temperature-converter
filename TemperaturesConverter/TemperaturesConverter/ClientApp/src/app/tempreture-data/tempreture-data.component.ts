@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient,  HttpParams } from '@angular/common/http';
-//import { Http } from '@angular/http';
 import { TempretureSet } from '../interfaces/tempretureset';
 
 @Component({
@@ -11,11 +10,8 @@ import { TempretureSet } from '../interfaces/tempretureset';
 
 export class TempretureDataComponent {
 
-  public tempretureSet: TempretureSet[];
-  temperatureKelvin = 0;
-  temperatureFahrenheit = 0;
-  temperatureCelsius = 0;
-
+  public tempretureSet: TempretureSet[] = [];
+ 
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
@@ -28,6 +24,7 @@ export class TempretureDataComponent {
     //This Server call must bring in to service
     this.http.get<TempretureSet[]>(this.baseUrl + 'api/Tempreture/TempretureCalculater', {params}).subscribe(result => {
       this.tempretureSet = result;
+      console.log(this.tempretureSet);
     }, error => console.error(error));
 
     //this.getTempratureData(params);

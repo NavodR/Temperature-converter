@@ -4,13 +4,13 @@
 <div class="main-wrapper" >
 
   <p>Fahrenheit</p>
-  <input type="number" placeholder="Fahrenheit" class="form-control" [(ngModel)]="temperatureFahrenheit" (input)="onTempChange($event.target.value , 'Fahrenheit')">
+  <input type="number" placeholder="Fahrenheit" class="form-control" [(ngModel)]="tempretureSet.temperatureFahrenheit" (input)="onTempChange($event.target.value , 'Fahrenheit')">
 
   <p>Celsius</p>
-  <input type="number" placeholder="Celsius" class="form-control" [(ngModel)]="temperatureCelsius" (input)="onTempChange($event.target.value, 'Celsius')">
+  <input type="number" placeholder="Celsius" class="form-control" [(ngModel)]="tempretureSet.temperatureCelsius" (input)="onTempChange($event.target.value, 'Celsius')">
 
   <p>Kelvin</p>
-  <input type="number" placeholder="Kelvin" class="form-control" [(ngModel)]="temperatureKelvin" (input)="onTempChange($event.target.value, 'Kelvin')">
+  <input type="number" placeholder="Kelvin" class="form-control" [(ngModel)]="tempretureSet.temperatureKelvin" (input)="onTempChange($event.target.value, 'Kelvin')">
 
 </div>
 
