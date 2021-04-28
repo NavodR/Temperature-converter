@@ -1,4 +1,4 @@
-# TemperatureCalculater
+# Temperature-Converter
 
 *****************************
 
