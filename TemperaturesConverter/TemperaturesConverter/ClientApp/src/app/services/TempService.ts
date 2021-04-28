@@ -1,8 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { TempData } from '../interfaces/tempData';
 
-@Injectable({
+@Inject({
   providedIn: 'root'
 })
 
